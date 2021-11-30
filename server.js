@@ -118,7 +118,18 @@ const server = net.createServer(socket => {
 	})
 })
 
-const port = process.env.PORT || 3000
-const host = process.env.HOST || '0.0.0.0'
-console.log('Server listening on ' + host + ':' + port)
-server.listen(port, host)
+const port = 80
+// const host = process.env.HOST || '0.0.0.0'
+console.log('Server listening on port ' + port)
+server.listen(port)
+
+
+const express = require('express');
+const app = express();
+const http = require('http');
+const httpserver = http.createServer(app);
+
+const httpport = process.env.PORT || 3000
+httpserver.listen(httpport, () => {
+	console.log('listening on *:'+httpport);
+});
