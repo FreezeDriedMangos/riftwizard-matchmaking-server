@@ -124,7 +124,7 @@ console.log('Server listening on port ' + port)
 server.listen(port)
 
 
-// const express = require('express');
+const express = require('express');
 // const app = express();
 // const http = require('http');
 // const httpserver = http.createServer(app);
@@ -133,3 +133,13 @@ server.listen(port)
 // httpserver.listen(httpport, () => {
 // 	console.log('listening on *:'+httpport);
 // });
+
+
+const expressapp = express()
+const httpserver = expressapp.listen(port)
+httpserver.on('upgrade', (request, socket, head) => {
+    // wsServer.handleUpgrade(request, socket, head, socket => {
+    //     wsServer.emit('connection', socket, request)
+    // })
+	console.log('socket upgrade')
+})

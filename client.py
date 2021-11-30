@@ -1,6 +1,9 @@
 import socket # for socket
 import sys
 
+# most helpful stackoverflow post for heroku debugging:
+# https://stackoverflow.com/questions/15243342/simple-tcp-socket-chat-server-doesnt-work-on-heroku
+
 def init_socket():
 	try:
 		s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -12,6 +15,7 @@ def init_socket():
 	# port = 1337
 	# port = 3000
 	port = 80
+	port = 443
 	
 	try:
 		# host_ip = socket.gethostbyname('www.google.com')
