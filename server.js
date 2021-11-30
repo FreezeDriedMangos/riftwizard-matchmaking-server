@@ -25,14 +25,14 @@ types:
 const server = net.createServer(socket => {
 	socket.write('yConnected')
 	// socket.pipe(socket) // send all output from socket to socket
-	console.log('client connected: ' + socket.address())
+	console.log('client connected: %j', socket.address())
 
 	socket.on('error', function(err) {
 		console.log(err)
 	})
 
 	socket.on('close', function() {
-		console.log('client disconnected: ' + socket.address())
+		console.log('client disconnected: %j', socket.address())
 		// for now, just close the lobby when any player disconnects
         lobbies.closeLobbyByConnection(socket)
 	})
