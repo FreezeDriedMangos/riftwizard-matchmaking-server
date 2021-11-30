@@ -118,4 +118,6 @@ const server = net.createServer(socket => {
 	})
 })
 
-server.listen(process.env.PORT || 3000)
+const port = process.env.PORT || 3000
+console.log('Server listening on port ' + port)
+server.listen(port)
