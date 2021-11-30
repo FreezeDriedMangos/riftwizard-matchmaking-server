@@ -124,7 +124,7 @@ const port = process.env.PORT || 3000
 server.listen(port, () => {
 	address = server.address();
 	console.log('opened server on %j', address);
-}
+})
 
 
 // const express = require('express');
