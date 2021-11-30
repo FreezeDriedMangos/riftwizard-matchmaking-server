@@ -25,14 +25,14 @@ types:
 const server = net.createServer(socket => {
 	socket.write('yConnected')
 	// socket.pipe(socket) // send all output from socket to socket
-	console.log('client connected')
+	console.log('client connected: ' + socket.address())
 
 	socket.on('error', function(err) {
 		console.log(err)
 	})
 
 	socket.on('close', function() {
-		console.log('client disconnected')
+		console.log('client disconnected: ' + socket.address())
 		// for now, just close the lobby when any player disconnects
         lobbies.closeLobbyByConnection(socket)
 	})
@@ -121,7 +121,10 @@ const server = net.createServer(socket => {
 const port = process.env.PORT || 3000
 // const host = process.env.HOST || '0.0.0.0'
 // console.log('Server listening on port ' + port)
-server.listen(port)
+server.listen(port, () => {
+	address = server.address();
+	console.log('opened server on %j', address);
+}
 
 
 // const express = require('express');

@@ -4,6 +4,9 @@ import sys
 # most helpful stackoverflow post for heroku debugging:
 # https://stackoverflow.com/questions/15243342/simple-tcp-socket-chat-server-doesnt-work-on-heroku
 
+# another potentially helpful stackoverflow post
+# https://stackoverflow.com/questions/43386624/tcp-ip-socket-on-heroku
+
 def init_socket():
 	try:
 		s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
