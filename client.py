@@ -9,11 +9,13 @@ def init_socket():
 		print ("socket creation failed with error %s" %(err))
 	
 	# default port for socket
-	port = 1337
+	# port = 1337
+	port = 3000
 	
 	try:
 		# host_ip = socket.gethostbyname('www.google.com')
-		host_ip = 'localhost'
+		# host_ip = 'localhost'
+		host_ip = socket.gethostbyname('riftwizard-matchmaking-server.herokuapp.com')
 	except socket.gaierror:
 	
 		# this means could not resolve the host
