@@ -120,8 +120,8 @@ const server = net.createServer(socket => {
 
 const port = process.env.PORT || 3000
 // const host = process.env.HOST || '0.0.0.0'
-console.log('Server listening on port ' + port)
-server.listen(port)
+// console.log('Server listening on port ' + port)
+// server.listen(port)
 
 
 const express = require('express');
@@ -136,7 +136,9 @@ const express = require('express');
 
 
 const expressapp = express()
-const httpserver = expressapp.listen(port)
+const httpserver = expressapp.listen(port, () => {
+	console.log('Server listening on port ' + port)
+})
 httpserver.on('upgrade', (request, socket, head) => {
     // wsServer.handleUpgrade(request, socket, head, socket => {
     //     wsServer.emit('connection', socket, request)
