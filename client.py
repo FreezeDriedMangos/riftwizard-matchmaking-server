@@ -55,7 +55,7 @@ def send_message(s, msg, encode=True):
 	if encode:
 		msg = msg.encode()
 	
-	print ('>>> ' + str(msg))
+	print ('<<< ' + str(msg))
 	s.send(msg)
 
 
@@ -71,7 +71,7 @@ def recieve(s):
 			closed = True
 			s.close()
 		if msg != None:
-			print('<<< ' + str(msg))
+			print('>>> ' + str(msg))
 
 def send(s):
 	
