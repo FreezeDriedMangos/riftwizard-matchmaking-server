@@ -11,7 +11,7 @@ def init_socket():
 	# default port for socket
 	# port = 1337
 	# port = 3000
-	port = 3223
+	port = 80
 	
 	try:
 		# host_ip = socket.gethostbyname('www.google.com')
