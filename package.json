@@ -4,9 +4,11 @@
   "description": "",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node socket_test.js"
   },
   "author": "",
   "dependencies": {
+    "express": "^4.17.1",
+    "socket.io": "^4.4.0"
   }
 }
