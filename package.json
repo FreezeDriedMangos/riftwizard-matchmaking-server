@@ -1,14 +1,12 @@
 {
-  "name": "server_v2",
-  "version": "1.0.0",
-  "description": "",
+  "name": "Modded_RiftWizard_Multiplayer_Mod_Server",
+  "version": "0.0.0",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node app.js"
   },
-  "author": "",
   "dependencies": {
+    "cors": "^2.8.5",
     "express": "^4.17.1",
-    "socket.io": "^4.4.0"
+    "ws": "^8.3.0"
   }
 }

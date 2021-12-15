@@ -74,7 +74,7 @@ module.exports.closeLobby = (lobby) => {
 		console.log('Closing lobby ' + lobby.name)
 
 		lobby.playerConnections.forEach(connection => {
-			connection.write('d') // player disconnected message
+			connection.send('d') // player disconnected message
 			module.exports.removeConnection(connection)
 		})
 
@@ -97,20 +97,20 @@ module.exports.sendMessageToLobbyFromConnection = (socket, messageString) => {
 	const connections = module.exports.getOtherPlayersByConnection(socket)
 	if (connections == null) {
 		console.log('sending fail not in lobby')
-		socket.write('nNot in lobby') // fail message
+		socket.send('nNot in lobby') // fail message
 		return
 	}
 	if (connections.length == 0) {
 		console.log('sending fail empty lobby')
-		socket.write('nEmpty lobby') // fail message
+		socket.send('nEmpty lobby') // fail message
 		return
 	}
 
 	console.log('forwarding to ' + connections.length + ' connections')
 	connections.forEach(connection => {
-		connection.write(messageString)
+		connection.send(messageString)
 	})
 	console.log('sending success message')
-	socket.write('y') // success message
+	socket.send('y') // success message
 	return
 }
