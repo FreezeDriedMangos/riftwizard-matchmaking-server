@@ -118,7 +118,10 @@ wsServer.on('connection', (socket) => {
 // `server` is a vanilla Node.js HTTP server, so use
 // the same ws upgrade process described here:
 // https://www.npmjs.com/package/ws#multiple-servers-sharing-a-single-https-server
-const server = app.listen(process.env.PORT || 3000)
+const port = process.env.PORT || 3000
+const server = app.listen(port, function() {
+    console.log('Listening on port %d', port);
+})
 server.on('upgrade', (request, socket, head) => {
     wsServer.handleUpgrade(request, socket, head, socket => {
         wsServer.emit('connection', socket, request)
