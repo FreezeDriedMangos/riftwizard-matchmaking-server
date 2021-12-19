@@ -17,6 +17,7 @@ types:
 		y - success message
 		n - fail message
 		c - player connected to lobby
+          - (space) heartbeat, keep connection open
 	socket to server:
 		h - 'host' lobby (really means create new lobby)
 		j - join lobby
@@ -114,6 +115,9 @@ wsServer.on('connection', (socket) => {
         }
     })
 })
+
+const heartbeatFrequency_milliseconds = 5000 
+setInterval(lobbies.heartbeatAllLobbies, heartbeatFrequency_milliseconds)
 
 // `server` is a vanilla Node.js HTTP server, so use
 // the same ws upgrade process described here:

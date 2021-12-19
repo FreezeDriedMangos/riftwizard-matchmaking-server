@@ -29,6 +29,14 @@ module.exports.addPlayerToLobby = (lobby, playerConnection) => {
 	lobbiesByConnection.set(playerConnection, lobby)
 }
 
+module.exports.heartbeatAllLobbies = () => {
+	lobbies.forEach(lobby => {
+		lobby.playerConnections.forEach(connection => {
+			connection.send(' ')
+		})
+	})
+}
+
 
 
 
