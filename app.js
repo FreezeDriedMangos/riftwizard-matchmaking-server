@@ -27,6 +27,8 @@ types:
 		m - chat message
 		a - player taking a game action
 		b - player making a game purchase
+        t - timer trigger
+        e - settings change
 */
 
 
@@ -105,8 +107,12 @@ wsServer.on('connection', (socket) => {
             // s{"char_selected": 3}
         case 's':
             // game start
+        case 'e':
+            // settings change
         case 'm':
             // chat message
+        case 't':
+            // timer trigger
         case 'b':
             // in-game purchase action
         case 'a': // game action
