@@ -60,8 +60,7 @@ wsServer.on('connection', (socket) => {
         const messageString = message.toString()
         const messageType = messageString.charAt(0)
 
-        switch(messageType) {
-        case 'h': // new lobby
+        const h_message = () => {
             const l_messageBody = JSON.parse(messageString.substring(1))
             if (lobbies.getLobbyByConnection(socket)) {
                 socket.send('nAlready in another lobby') // fail message
@@ -74,8 +73,8 @@ wsServer.on('connection', (socket) => {
             lobbies.addLobby(l_messageBody.name, socket, l_messageBody.trial, l_messageBody.mods.sort().join(','))
             console.log('sending success message')
             socket.send('y') // success message
-            break
-        case 'j': // connect to lobby
+        }
+        const j_message  = () => {
             const c_messageBody = JSON.parse(messageString.substring(1))
             const lobby = lobbies.getLobbyByName(c_messageBody.name)
             if (lobbies.getLobbyByConnection(socket)) {
@@ -97,11 +96,19 @@ wsServer.on('connection', (socket) => {
 
             lobbies.addPlayerToLobby(lobby, socket)
             lobbies.sendMessageToLobbyFromConnection(socket, 'c') // sends success or fail message
+        }
+
+        switch(messageType) {
+        case 'h': // new lobby
+            h_message()
+            break
+        case 'j': // connect to lobby
+            j_message()
             break
 
         case 'd': // soft disconnect
-            lobbies.closeLobbyByConnection(socket)
             lobbies.sendMessageToLobbyFromConnection(socket, messageString)
+            lobbies.closeLobbyByConnection(socket)
             break
 
         case 'r': // game ready to start
