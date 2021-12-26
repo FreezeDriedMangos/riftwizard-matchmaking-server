@@ -21,6 +21,8 @@ types:
 	socket to server:
 		h - 'host' lobby (really means create new lobby)
 		j - join lobby
+        l - 'host' or join lobby, depending on whether it's already created or not
+        L - list existing lobbies
 	socket to sockets in same lobby:
 		r - ready to start game
 		s - start game ('host' only)
@@ -99,6 +101,8 @@ wsServer.on('connection', (socket) => {
         }
 
         switch(messageType) {
+        // LOBBY STUFF
+
         case 'h': // new lobby
             h_message()
             break
@@ -106,10 +110,27 @@ wsServer.on('connection', (socket) => {
             j_message()
             break
 
+        case 'l': // connect to/create lobby
+            const l_messageBody = JSON.parse(messageString.substring(1))
+            const lobby = lobbies.getLobbyByName(c_messageBody.name)
+            if (lobby) {
+                j_message()
+                break
+            } else {
+                h_message()
+                break
+            }
+            break
+        case 'L': // list lobbies
+            socket.send('y'+JSON.toString(lobbies.listAllLobbies()))
+            break
+
         case 'd': // soft disconnect
             lobbies.sendMessageToLobbyFromConnection(socket, messageString)
             lobbies.closeLobbyByConnection(socket)
             break
+
+        // GAME STUFF
 
         case 'r': // game ready to start
             // host is expected to send something like:

@@ -37,7 +37,15 @@ module.exports.heartbeatAllLobbies = () => {
 	})
 }
 
-
+module.exports.listAllLobbies = () => {
+	return lobbies.map(lobby => {
+		return {
+			name: lobby.name,
+			trial: lobby.trialSelected,
+			mods: lobby.mods
+		}
+	})
+}
 
 
 module.exports.getLobbyByConnection = (connection) => {
