@@ -46,6 +46,15 @@ module.exports.listAllLobbies = () => {
 		}
 	})
 }
+module.exports.listNLobbies = (N) => {
+	return lobbies.slice(0, N).map(lobby => {
+		return {
+			name: lobby.name,
+			trial: lobby.trialSelected,
+			mods: lobby.mods
+		}
+	})
+}
 
 
 module.exports.getLobbyByConnection = (connection) => {

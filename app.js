@@ -122,7 +122,7 @@ wsServer.on('connection', (socket) => {
             }
             break
         case 'L': // list lobbies
-            socket.send('y'+JSON.toString(lobbies.listAllLobbies()))
+            socket.send('y'+JSON.toString(lobbies.listNLobbies(10)))
             break
 
         case 'd': // soft disconnect
