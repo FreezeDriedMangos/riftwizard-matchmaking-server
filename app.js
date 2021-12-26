@@ -99,6 +99,11 @@ wsServer.on('connection', (socket) => {
             lobbies.sendMessageToLobbyFromConnection(socket, 'c') // sends success or fail message
             break
 
+        case 'd': // soft disconnect
+            lobbies.closeLobbyByConnection(socket)
+            lobbies.sendMessageToLobbyFromConnection(socket, messageString)
+            break
+
         case 'r': // game ready to start
             // host is expected to send something like:
             // s{"seed": 12345, "char_selected": 3, "turn_mode": 2, "sp_strat": 1}
