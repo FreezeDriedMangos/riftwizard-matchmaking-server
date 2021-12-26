@@ -17,7 +17,7 @@ types:
 		y - success message
 		n - fail message
 		c - player connected to lobby
-          - (space) heartbeat, keep connection open
+        ♡ - (space) heartbeat, keep connection open
 	socket to server:
 		h - 'host' lobby (really means create new lobby)
 		j - join lobby

@@ -32,7 +32,7 @@ module.exports.addPlayerToLobby = (lobby, playerConnection) => {
 module.exports.heartbeatAllLobbies = () => {
 	lobbies.forEach(lobby => {
 		lobby.playerConnections.forEach(connection => {
-			connection.send(' ')
+			connection.send('♡')
 		})
 	})
 }
