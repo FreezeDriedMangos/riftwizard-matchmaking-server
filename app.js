@@ -66,38 +66,39 @@ wsServer.on('connection', (socket) => {
             const l_messageBody = JSON.parse(messageString.substring(1))
             if (lobbies.getLobbyByConnection(socket)) {
                 socket.send('nAlready in another lobby') // fail message
-                break
+                return
             }
             if (lobbies.lobbyNameTaken(l_messageBody.name)) {
                 socket.send('nName taken') // fail message
-                break
+                return
             }
             lobbies.addLobby(l_messageBody.name, socket, l_messageBody.trial, l_messageBody.mods.sort().join(','))
-            console.log('sending success message')
-            socket.send('y') // success message
+            // console.log('sending success message')
+            socket.send('yHosting') // success message
         }
         const j_message  = () => {
             const c_messageBody = JSON.parse(messageString.substring(1))
             const lobby = lobbies.getLobbyByName(c_messageBody.name)
             if (lobbies.getLobbyByConnection(socket)) {
                 socket.send('nAlready in another lobby') // fail message
-                break
+                return
             }
             if (!lobby) {
                 socket.send('nNo lobby with name') // fail message
-                break
+                return
             }
             if (lobby.playerConnections.length >= 2) {
                 socket.send('nLobby full') // fail message
-                break
+                return
             }
             if (lobby.mods !== c_messageBody.mods.sort().join(',')) {
                 socket.send('nMismatching modlist') // fail message
-                break
+                return
             }
 
             lobbies.addPlayerToLobby(lobby, socket)
             lobbies.sendMessageToLobbyFromConnection(socket, 'c') // sends success or fail message
+            socket.send('yJoining') // success message
         }
 
         switch(messageType) {
